@@ -1,30 +1,23 @@
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& numbers, int target) 
-    {
-        int s = numbers.size();
-        vector<int> ans;
+    vector<int> twoSum(vector<int>& arr, int target) {
 
         int i = 0;
-        int j = s-1;
+        int j = arr.size()-1;
 
-        while(i<j) // Looping the both i and j
+        while(i<j)
         {
-            if(numbers[i]+numbers[j] == target) // if the both number's sum is equal to target then push it
-            {
-                ans.push_back(i+1);
-                ans.push_back(j+1);
-                return ans;
-            }
-            
-            else if (numbers[i]+numbers[j] > target) j--; // if the sum is greater than the target then move the pointer j closer to i
-            
-            else i++; // if the sum is smaller than increament the i
+            int temp = arr[i] + arr[j];
 
+            if(temp == target)
+            return {i+1,j+1};
+
+            else if(temp < target)
+            i++;
+            else j--;
         }
-        return ans; // push the answer
-
-        
+        return {};
         
     }
 };
+//complexity is O(n)
