@@ -6,7 +6,7 @@ public:
         return true;
 
 
-        sort(nums.begin(),nums.end());
+
 
         int s = 0;
         int e = nums.size()-1;
@@ -20,13 +20,23 @@ public:
             if(nums[mid] == target)
             return true;
 
-            if(nums[mid] > target)
+            if(nums[mid] == nums[s] && nums[e] == nums[mid])
             {
-                e = mid-1;
+                s++;
+                e--;
             }
-            else
-            {
-                s = mid+1;
+            else if (nums[s] <= nums[mid]) {
+                if (nums[s] <= target && target < nums[mid])  
+                    e = mid - 1;
+                else
+                    s = mid + 1;
+            }
+            
+            else {
+                if (nums[mid] < target && target <= nums[e])
+                    s = mid + 1;
+                else
+                    e = mid - 1;
             }
 
             
@@ -36,6 +46,6 @@ public:
     }
 };
 /*
-*    Time Complexity will be :- O(n log n)
+*    Time Complexity will be :- O(log n)
 *    Space Complexity will be :- O(1)
 */
